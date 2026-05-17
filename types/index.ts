@@ -47,9 +47,12 @@ export interface LandRecord {
   soldToAadhaarImage?: string;
   soldToGeoTagImage?: string;
   sellDate?: string;
+  dealClosed?: boolean;
   contactPhone: string;
   whatsapp: string;
   pricePerAcre: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface SoldRecord {

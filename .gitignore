@@ -1,0 +1,10 @@
+node_modules
+.expo
+.env.local
+backend
+publish-frontend
+publish-backend
+backend-start.err.log
+backend-start.out.log
+backend-smoke.err.log
+backend-smoke.out.log

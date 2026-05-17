@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Shopora",
+    "slug": "shopora-marketplace",
+    "scheme": "shopora",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "jsEngine": "hermes",
+    "platforms": ["ios", "android"],
+    "android": {},
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {}
+  }
+}

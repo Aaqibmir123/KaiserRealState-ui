@@ -1,0 +1,42 @@
+import mongoose, { Schema } from "mongoose";
+
+const LandSchema = new Schema(
+  {
+    slug: { type: String, required: true, unique: true, index: true },
+    title: { type: String, required: true },
+    intent: { type: String, enum: ["Buy", "Sell"], required: true },
+    price: { type: String, required: true },
+    purchasePrice: { type: String },
+    location: { type: String, required: true },
+    areaSize: { type: String, required: true },
+    landType: { type: String, required: true, default: "Land" },
+    zoning: { type: String, required: true, default: "General land use" },
+    featured: { type: Boolean, default: false },
+    sold: { type: Boolean, default: false },
+    description: { type: String, required: true },
+    investmentPotential: { type: [String], default: [] },
+    nearbyLandmarks: { type: [String], default: [] },
+    coordinates: { type: String, required: true },
+    image: { type: String, required: true },
+    gallery: { type: [String], default: [] },
+    sourceBuyId: { type: String },
+    purchasedFromName: { type: String, required: true },
+    purchasedFromPhone: { type: String, required: true },
+    purchaseDate: { type: String, required: true },
+    aadhaarCardImage: { type: String, required: true },
+    geoTagImage: { type: String, required: true },
+    soldToName: { type: String },
+    soldToPhone: { type: String },
+    soldToLocation: { type: String },
+    soldToAadhaarImage: { type: String },
+    soldToGeoTagImage: { type: String },
+    sellDate: { type: String },
+    dealClosed: { type: Boolean, default: false },
+    contactPhone: { type: String, required: true },
+    whatsapp: { type: String, required: true },
+    pricePerAcre: { type: String, required: true },
+  },
+  { timestamps: true },
+);
+
+export const LandModel = mongoose.models.Land ?? mongoose.model("Land", LandSchema);

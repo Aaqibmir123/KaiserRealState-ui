@@ -4,6 +4,7 @@ node_modules
 backend
 publish-frontend
 publish-backend
+dist
 backend-start.err.log
 backend-start.out.log
 backend-smoke.err.log

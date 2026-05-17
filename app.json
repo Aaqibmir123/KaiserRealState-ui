@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "jsEngine": "hermes",
-    "platforms": ["ios", "android"],
+    "platforms": ["ios", "android", "web"],
     "android": {},
     "ios": {
       "supportsTablet": true

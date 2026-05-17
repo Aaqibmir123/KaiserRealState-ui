@@ -13,7 +13,7 @@ import { useLoginMutation, useMeQuery } from "@/frontend/store/api/kasierApi";
 export default function AdminLoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const { data: session, isLoading: sessionLoading } = useMeQuery();
+  const { data: session, isLoading: sessionLoading, refetch: refetchSession } = useMeQuery();
   const [login, { isLoading, error }] = useLoginMutation();
 
   const form = useForm<LoginInput>({
@@ -31,9 +31,13 @@ export default function AdminLoginPage() {
   }, [router, session]);
 
   async function onSubmit(values: LoginInput) {
-    const result = await login(values);
-    if ("data" in result) {
+    try {
+      await login(values).unwrap();
+      await refetchSession();
       router.replace("/admin/dashboard");
+      router.refresh();
+    } catch {
+      // Mutation error is shown below.
     }
   }
 

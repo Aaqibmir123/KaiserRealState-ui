@@ -6,29 +6,37 @@ function endpoint(path: string) {
 }
 
 async function fetchList<T>(path: string): Promise<T[]> {
-  const response = await fetch(endpoint(path), { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Failed to load ${path}`);
-  }
+  try {
+    const response = await fetch(endpoint(path), { cache: "no-store" });
+    if (!response.ok) {
+      return [];
+    }
 
-  const payload = (await response.json()) as T[] | { data?: T[] };
-  if (Array.isArray(payload)) {
-    return payload;
+    const payload = (await response.json()) as T[] | { data?: T[] };
+    if (Array.isArray(payload)) {
+      return payload;
+    }
+    return payload.data ?? [];
+  } catch {
+    return [];
   }
-  return payload.data ?? [];
 }
 
 async function fetchItem<T>(path: string): Promise<T | null> {
-  const response = await fetch(endpoint(path), { cache: "no-store" });
-  if (!response.ok) {
+  try {
+    const response = await fetch(endpoint(path), { cache: "no-store" });
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload = (await response.json()) as T | { data?: T | null };
+    if (payload && typeof payload === "object" && "data" in payload) {
+      return payload.data ?? null;
+    }
+    return payload as T;
+  } catch {
     return null;
   }
-
-  const payload = (await response.json()) as T | { data?: T | null };
-  if (payload && typeof payload === "object" && "data" in payload) {
-    return payload.data ?? null;
-  }
-  return payload as T;
 }
 
 export async function getLands() {

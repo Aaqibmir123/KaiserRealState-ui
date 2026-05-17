@@ -1,6 +1,6 @@
 import { SoldTimeline } from "@/components/site/sold-timeline";
 import { SectionHeading } from "@/components/common/section-heading";
-import { getSoldRecords } from "@/backend/repositories/sold";
+import { getSoldRecords } from "@/lib/site-api";
 
 export default async function SoldPage() {
   const soldRecords = await getSoldRecords();

@@ -16,14 +16,10 @@ import { OwnerHighlight } from "@/components/site/owner-highlight";
 import { SectionHeading } from "@/components/common/section-heading";
 import { TestimonialCard } from "@/components/site/testimonial-card";
 import { credibilityStats, site } from "@/constants/site";
-import { getLands } from "@/backend/repositories/lands";
-import { getTestimonials } from "@/backend/repositories/testimonials";
+import { getLands, getTestimonials } from "@/lib/site-api";
 
 export default async function Home() {
-  const [landRecords, testimonials] = await Promise.all([
-    getLands(),
-    getTestimonials(),
-  ]);
+  const [landRecords, testimonials] = await Promise.all([getLands(), getTestimonials()]);
 
   const stats = [
     { label: credibilityStats[0].label, value: credibilityStats[0].value, icon: ShieldCheck },

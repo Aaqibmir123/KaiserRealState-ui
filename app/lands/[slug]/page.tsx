@@ -4,16 +4,13 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, MapPinned, MessageCircle, PhoneCall } from "lucide-react";
 import { LandCard } from "@/components/site/land-card";
 import { SectionHeading } from "@/components/common/section-heading";
-import { getLandBySlug, getLands } from "@/backend/repositories/lands";
+import { getLandBySlug, getLands } from "@/lib/site-api";
 
 interface LandDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const landRecords = await getLands();
-  return landRecords.map((land) => ({ slug: land.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function LandDetailPage({ params }: LandDetailPageProps) {
   const { slug } = await params;

@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/components/common/section-heading";
 import { TestimonialCard } from "@/components/site/testimonial-card";
-import { getTestimonials } from "@/backend/repositories/testimonials";
+import { getTestimonials } from "@/lib/site-api";
 
 export default async function TestimonialsPage() {
   const testimonials = await getTestimonials();

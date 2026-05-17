@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LandCard } from "@/components/site/land-card";
 import { SectionHeading } from "@/components/common/section-heading";
-import { getLands } from "@/backend/repositories/lands";
+import { getLands } from "@/lib/site-api";
 
 export default async function LandsPage() {
   const landRecords = await getLands();
